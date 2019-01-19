@@ -1,0 +1,150 @@
+<html>
+<head><title>REGISTRATION</title>
+<script>
+function validate()
+{
+	errors=[];
+	var n= document.myform.uname.value;
+	var a=document.myform.addr.value;
+	var e=document.myform.mail.value;
+	var pn=document.myform.phone.value;
+	var p=document.myform.pwd.value;
+	var cp=document.myform.cpwd.value;
+	var atpos=e.indexOf("@");
+	var dotpos=e.lastIndexOf(".");
+	var phoneno = /^\d{10}$/;
+	var status=true;
+	if(n=="")
+	{
+	   errors.push("Name is empty");
+	   document.getElementById("name").innerHTML="<img src='uncheck.gif' width='20' height='20'/>";
+    }
+	else
+	{
+		document.getElementById("name").innerHTML="<img src='check.gif' width='20' height='20'/>";
+	}
+	
+	if(a=="")
+	{
+	   errors.push("Address is empty");
+	   document.getElementById("address").innerHTML="<img src='uncheck.gif' width='20' height='20'/>";
+    }
+	else
+	{
+		document.getElementById("address").innerHTML="<img src='check.gif' width='20' height='20'/>"
+	}
+	
+	if(e=="")
+	{
+		errors.push("E-mail is empty");
+		document.getElementById("email").innerHTML="<img src='uncheck.gif' width='20' height='20'/>";
+	}
+	else
+	{
+		if(atpos<1||atpos+2>dotpos||e.length<=dotpos+2)
+		{
+			errors.push("Invalid E-mail address");
+			document.getElementById("email").innerHTML="<img src='uncheck.gif' width='20' height='20'/>";
+		}
+		else
+		{
+			document.getElementById("email").innerHTML="<img src='check.gif' width='20' height='20'/>";
+
+		}
+	}
+	if(pn=="")
+	{
+	   errors.push("Contact Number is empty");
+	   document.getElementById("no").innerHTML="<img src='uncheck.gif' width='20' height='20'/>";
+    }
+	else
+	{
+		if(!pn.match(phoneno))
+		{
+			errors.push("Invalid Contact Number");
+			document.getElementById("no").innerHTML="<img src='uncheck.gif' width='20' height='20'/>";
+		}
+		else
+		{
+			document.getElementById("no").innerHTML="<img src='check.gif' width='20' height='20'/>";
+		}
+	}
+	
+	if(p==""&&cp!="")
+	{
+	   errors.push("Password is empty");
+	   document.getElementById("pd").innerHTML="<img src='uncheck.gif' width='20' height='20'/>";
+    }
+	else
+	{
+		document.getElementById("pd").innerHTML="<img src='check.gif' width='20' height='20'/>"
+	}
+    if(cp==""&&p!="")
+	{
+	   errors.push("Confirm Paswword is empty");
+	   document.getElementById("cpd").innerHTML="<img src='uncheck.gif' width='20' height='20'/>";
+    }
+	else
+	{
+		document.getElementById("cpd").innerHTML="<img src='check.gif' width='20' height='20'/>"
+	}
+	if(p==""&&cp=="")
+	{
+		errors.push("Passwords are empty");
+		document.getElementById("pd").innerHTML="<img src='uncheck.gif' width='20' height='20'/>";
+		document.getElementById("cpd").innerHTML="<img src='uncheck.gif' width='20' height='20'/>";
+	}
+	if(p!=""&&cp!="")
+	{
+	if(p!=cp)
+	{
+		errors.push("Passwords are not matched");
+		document.getElementById("pd").innerHTML="<img src='uncheck.gif' width='20' height='20'/>";
+		document.getElementById("cpd").innerHTML="<img src='uncheck.gif' width='20' height='20'/>";
+	}
+	else
+	{
+		document.getElementById("pd").innerHTML="<img src='check.gif' width='20' height='20'/>";
+		document.getElementById("cpd").innerHTML="<img src='check.gif' width='20' height='20'/>";
+	}
+	}
+	if(errors.length>0)
+	{
+		var msg="ERRORS:\n\n";
+	for(i=0;i<errors.length;i++)
+	{
+		msg+=errors[i]+'\n';
+	}
+	alert(msg);
+	return status=false;
+	}
+	return status;
+	}
+</script>
+
+<style>
+div{
+	font-family:timesnewroman;
+	margin-left:230px;
+	font-weight:bold;
+	font-size:25px;
+	color:green;
+	}
+</style>
+</head>
+<body bgcolor="white">
+<h1 style="text-align:center;color:darkmagenta"><b><u>REGISTRATION FORM</u></b></h1>
+<form name="myform" action="next.html" onsubmit="return validate(this)">
+<div><pre>
+NAME			:<input type="text" size="55" name="uname"><span id="name"></span><br/><br/>
+ADDRESS			:<textarea cols="57" name="addr"></textarea><span id="address"></span><br/><br/>
+E-MAIL			:<input type="text" size="55" name="mail"><span id="email"></span><br/><br/>
+CONTACT-NO		:<input type="text" size="55" name="phone"><span id="no"></span><br/><br/>
+PASSWORD		:<input type="password" size="55" name="pwd"><span id="pd"></span><br/><br/>
+CONFIRM PASSWORD	:<input type="password" size="55" name="cpwd"><span id="cpd"></span><br/><br/>
+			<input type="submit" value="Submit">		<input type="reset" value="Reset"><pre>
+
+</div>
+</form>
+</body>
+</html>
