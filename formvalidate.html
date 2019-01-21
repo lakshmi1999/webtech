@@ -19,10 +19,29 @@ function validate()
 	   errors.push("Name is empty");
 	   document.getElementById("name").innerHTML="<img src='uncheck.gif' width='20' height='20'/>";
     }
-	else
+	else 
 	{
+		if(n!="")
+		{
+		var r=new Array("0","1","2","3","4","5","6","7","8","9");
+		var len=r.length;
+			for(i=0;i<len;i++)
+			{
+				if(n.match(r[i]))
+				{
+					errors.push("Invalid name,Numbers are not allowed");
+					document.getElementById("name").innerHTML="<img src='uncheck.gif' width='20' height='20'/>";
+					break;
+
+				}
+			}
+		}
+		else
+		{
 		document.getElementById("name").innerHTML="<img src='check.gif' width='20' height='20'/>";
+		}
 	}
+	
 	
 	if(a=="")
 	{
@@ -115,7 +134,7 @@ function validate()
 	{
 		msg+=errors[i]+'\n';
 	}
-	alert(msg);
+	window.alert(msg);
 	return status=false;
 	}
 	return status;
