@@ -75,7 +75,7 @@ function firstfocus()
 function namevalidate()
 {
 	var uid=document.myform.uname.value;
-	var x=/^[A-Za-z]$/;
+	var x=/^[A-Za-z]+[.\s]*[A-Za-z]+\s[A-Za-z]+$/;
 	if(uid.match(x))
   {
   document.getElementById("name").innerHTML='';
@@ -142,13 +142,13 @@ function datevalidate()
 		return false;
 	}
 	else if(dte>todayDate)
-	{
+	{var x=/^[A-Za-z]+[.\s]*[A-Za-z]+\s[A-Za-z]+$/;
 		document.getElementById("dmy").innerHTML="Invalid Date of Birth!";
 		document.myform.d.focus();
 		
 		return false;
 	}
-	else
+	elsevar x=/^[A-Za-z]+[.\s]*[A-Za-z]+\s[A-Za-z]+$/;
 	{
 		document.getElementById("dmy").innerHTML="";
 		document.myform.ctry.disabled=false;
